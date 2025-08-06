@@ -28,7 +28,17 @@ jobs:
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
 
     - name: Create RDP User Account 🧑‍💻
-      run: Set-LocalUser -Name "saeedxdie" -Password (ConvertTo-SecureString -AsPlainText "S@eedxdie1" -Force)
+      # Pehle user banayenge agar woh exist nahi karta
+      run: |
+        try {
+            Get-LocalUser -Name "saeedxdie" | Out-Null
+            Write-Host "User 'saeedxdie' already exists. Skipping creation."
+        } catch {
+            Write-Host "Creating new user 'saeedxdie'..."
+            New-LocalUser -Name "saeedxdie" -Password (ConvertTo-SecureString "S@eedxdie1" -AsPlainText -Force) -AccountNeverExpires -UserMayChangePassword $true
+            Add-LocalGroupMember -Group "Administrators" -Member "saeedxdie"
+            Write-Host "User 'saeedxdie' created and added to Administrators group."
+        }
 
     - name: Create Ngrok TCP Tunnel for RDP 🔗
       run: .\ngrok\ngrok.exe tcp 3389
