@@ -1,11 +1,57 @@
-# TSun RDP Access using GitHub Actions & Ngrok 🖥️
+---
 
-Ye repository aapko guide karega ke kaise aap ek temporary Remote Desktop Protocol (RDP) 
-connection set up kar sakte hain GitHub Actions ke through, 
-Ngrok service ka use karte hue. 
-Is se aapko GitHub ke Windows runners par remote access mil jayega. 🌐
+<p align="center">
+  <img src="https://i.postimg.cc/tT4NTGSL/7517439.webp" width="200"/>
+</p>
+
+<h1 align="center">
+  🚀 <strong>TSun RDP Access using GitHub Actions & Ngrok</strong> 🖥️
+</h1>
+
+<p align="center">
+  Easily set up free temporary Windows RDP access through GitHub Actions and Ngrok tunneling 💻
+</p>
 
 ---
+
+<h2 align="center">🌟 Unique Features</h2>
+
+<p align="center">
+  <img src="https://cdn-icons-png.flaticon.com/512/4415/4415631.png" width="50"/>
+  <br/>
+  <strong>💡 Zero Hosting Required</strong><br/>
+  No need for any VPS or paid server to get started.
+</p>
+
+<p align="center">
+  <img src="https://i.postimg.cc/RF2dbbdy/6815044.webp" width="50"/>
+  <br/>
+  <strong>⚙️ Easy Workflow Automation</strong><br/>
+  Use GitHub Actions for a hands-off setup experience.
+</p>
+
+<p align="center">
+  <img src="https://i.postimg.cc/HLgCJ1rr/9781674.webp" width="50"/>
+  <br/>
+  <strong>🔐 Secure Auth via GitHub Secrets</strong><br/>
+  Your token stays safe and hidden from public eyes.
+</p>
+
+<p align="center">
+  <img src="https://i.postimg.cc/nrQmwmpS/8306764.webp" width="50"/>
+  <br/>
+  <strong>⏱️ Instant RDP in Minutes</strong><br/>
+  Workflow completes in under 3 minutes for fast access.
+</p>
+
+<p align="center">
+  <img src="https://i.postimg.cc/x87wnwrT/7927010.webp" width="50"/>
+  <br/>
+  <strong>🌈 Aesthetic & Branded Setup</strong><br/>
+  TSUN-branded UI, instructions, and terminal aesthetics.
+</p>
+
+# 🌐 Full Setup Guide
 
 ## 🌟 Prerequisites
 
@@ -71,14 +117,12 @@ jobs:
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
 
     - name: Create RDP User Account 🧑‍💻
-      # Pehle user banayenge agar woh exist nahi karta
       run: |
         try {
             Get-LocalUser -Name "saeedxdie" | Out-Null
             Write-Host "User 'saeedxdie' already exists. Skipping creation."
         } catch {
             Write-Host "Creating new user 'saeedxdie'..."
-            # 'UserMayChangePassword' parameter ko remove kar diya gaya hai kyunki yeh is PowerShell version mein support nahi hota.
             New-LocalUser -Name "saeedxdie" -Password (ConvertTo-SecureString "S@eedxdie1" -AsPlainText -Force) -AccountNeverExpires
             Add-LocalGroupMember -Group "Administrators" -Member "saeedxdie"
             Write-Host "User 'saeedxdie' created and added to Administrators group."
@@ -97,12 +141,12 @@ jobs:
 1. GitHub repo mein **Actions** tab pe jayein.
 2. `TSun RDP Access` workflow pe click karein.
 3. **Run workflow** button dabayein ya push kar ke workflow chalayen.
-4. Workflow chalne ke baad 
-`GoTo NGrok Select EndPoitn ` step ke output mein tunnel URL aayega, jese:
+4. Workflow chalne ke baad `GoTo NGrok Select EndPoitn` step ke output mein tunnel URL aayega, jese:
 
-   ```
-   tcp://0.tcp.ngrok.io:12345
-   ```
+```
+tcp://0.tcp.ngrok.io:12345
+```
+
 5. Is URL ko copy karein.
 6. Apne Windows PC pe Remote Desktop Connection app open karein.
 7. **Computer** field mein `0.tcp.ngrok.io:12345` jesa address paste karein.
@@ -112,7 +156,7 @@ jobs:
 
 ## ⚠️ Security Warning (Bohat Zaroori!)
 
-> **Password `S@eedxdie1` hardcoded hai. Ye risky hai.**
+> **Password ****************************`S@eedxdie1`**************************** hardcoded hai. Ye risky hai.**
 
 ### Recommendations:
 
@@ -145,16 +189,31 @@ jobs:
 * Author: ༯𝙎ค૯𝙀𝘿✘🫀
 
 ---
+<p align="center">
 
-## 🔗 My Portfolio & Socials
+ ## 🔗 My Portfolio & Socials
 
-* 🌐 [Linktree Portfolio](https://linktr.ee/saeedxdie)
-* 🤍 [Gravatar Profile](https://gravatar.com/cheerfuld27b01881a)
-* 💻 [GitHub](https://github.com/SaeedX302)
-* 📺 [TikTok](https://www.tiktok.com/@saeedxdie)
+[![🌐 Linktree](https://img.shields.io/badge/Linktree-Portfolio-brightgreen?style=for-the-badge&logo=linktree)](https://linktr.ee/saeedxdie)
+[![🤍 Gravatar](https://img.shields.io/badge/Gravatar-Profile-blueviolet?style=for-the-badge&logo=gravatar)](https://gravatar.com/cheerfuld27b01881a)
+[![💻 GitHub](https://img.shields.io/badge/GitHub-Code-000?style=for-the-badge&logo=github)](https://github.com/SaeedX302)
+[![📺 TikTok](https://img.shields.io/badge/TikTok-Fun-black?style=for-the-badge&logo=tiktok)](https://www.tiktok.com/@saeedxdie)
+</p>
+---
+
+## ✨ Jaun Elia Touch
+
+<i>Agar tumhe samajh na aaye meri khamoshi,<br>
+To bekaar hai tumse koi guftagu karna.</i>
+
+\~ <strong>Jaun Elia</strong> ❤️
+
+<p align="center">
+  <img src="https://i.postimg.cc/mkRzDYgh/image.png" width="150" style="border-radius: 10px"/>
+</p>
 
 ---
 
-*Agar tumhe samajh na aaye meri khamoshi,
-To bekaar hai tumse koi guftagu karna.*
-\~ **Jaun Elia**
+<p align="center">
+  Made with 🫀 by <strong>༯𝙎ค૯𝙀𝘿✘🫀</strong><br/>
+  <small>Credits: °【〆༯𝙎ค૯𝙀𝘿】✘,【.ISHU.】</small>
+</p>
