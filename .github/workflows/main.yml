@@ -35,7 +35,8 @@ jobs:
             Write-Host "User 'saeedxdie' already exists. Skipping creation."
         } catch {
             Write-Host "Creating new user 'saeedxdie'..."
-            New-LocalUser -Name "saeedxdie" -Password (ConvertTo-SecureString "S@eedxdie1" -AsPlainText -Force) -AccountNeverExpires -UserMayChangePassword $true
+            # 'UserMayChangePassword' parameter ko remove kar diya gaya hai kyunki yeh is PowerShell version mein support nahi hota.
+            New-LocalUser -Name "saeedxdie" -Password (ConvertTo-SecureString "S@eedxdie1" -AsPlainText -Force) -AccountNeverExpires
             Add-LocalGroupMember -Group "Administrators" -Member "saeedxdie"
             Write-Host "User 'saeedxdie' created and added to Administrators group."
         }
